@@ -1,0 +1,170 @@
+/* kindle-image-hub — manage UI (ink & paper, one blue accent) */
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: #f6f6f4;
+    color: #111111;
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Heiti SC", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+button, input { font-family: inherit; font-size: 14px; }
+
+button {
+    cursor: pointer;
+    border: 2px solid #111111;
+    background: #ffffff;
+    color: #111111;
+    padding: 7px 14px;
+    border-radius: 4px;
+}
+button:hover:not(:disabled) { background: #111111; color: #ffffff; }
+button:disabled { opacity: 0.35; cursor: default; }
+
+button.primary { background: #111111; color: #ffffff; font-weight: 600; }
+button.primary:hover { background: #2b6cb0; border-color: #2b6cb0; }
+
+/* ---------- header ---------- */
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 24px;
+    background: #ffffff;
+    border-bottom: 2px solid #111111;
+    flex-wrap: wrap;
+}
+
+.brand { display: flex; align-items: baseline; gap: 10px; }
+.brand h1 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: 0.04em; }
+.brand .tag { font-size: 11px; color: #888888; letter-spacing: 0.14em; text-transform: uppercase; }
+
+.links { display: flex; align-items: center; gap: 16px; font-size: 13px; }
+
+.lang-toggle { display: flex; }
+.lang-toggle button {
+    border-radius: 0;
+    padding: 5px 12px;
+    font-size: 13px;
+    margin-left: -2px;
+}
+.lang-toggle button:first-child { border-radius: 4px 0 0 4px; margin-left: 0; }
+.lang-toggle button:last-child { border-radius: 0 4px 4px 0; }
+.lang-toggle button.on { background: #111111; color: #ffffff; }
+.links #host-label {
+    font-family: Menlo, Consolas, monospace;
+    color: #2b6cb0;
+    background: #eef4fb;
+    border: 1px solid #c9dcf0;
+    border-radius: 999px;
+    padding: 3px 12px;
+}
+.links a { color: #111111; font-weight: 600; text-decoration: none; }
+.links a:hover { color: #2b6cb0; }
+
+/* ---------- toolbar ---------- */
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 24px;
+    flex-wrap: wrap;
+}
+
+.tabs { display: flex; }
+.tabs button {
+    border-radius: 0;
+    padding: 7px 16px;
+}
+.tabs button:first-child { border-radius: 4px 0 0 4px; }
+.tabs button:last-child { border-radius: 0 4px 4px 0; margin-left: -2px; }
+.tabs button.on { background: #111111; color: #ffffff; }
+
+.actions { display: flex; align-items: center; gap: 10px; }
+
+.status { font-size: 12px; color: #666666; }
+.status.err { color: #b02b2b; }
+.status.ok { color: #2b6cb0; }
+
+/* ---------- grid ---------- */
+
+main { padding: 6px 24px 40px; }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 16px;
+}
+
+.card {
+    background: #ffffff;
+    border: 2px solid #111111;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.card .thumb {
+    height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: repeating-conic-gradient(#eeeeee 0% 25%, #ffffff 0% 50%) 0 0 / 16px 16px;
+    border-bottom: 1px solid #dddddd;
+}
+.card .thumb img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+}
+
+.card .meta {
+    padding: 9px 11px 3px;
+    font-size: 12px;
+    color: #555555;
+    word-break: break-all;
+    flex: 1;
+}
+.card .meta strong {
+    display: block;
+    color: #111111;
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+
+.card .ops { display: flex; gap: 8px; padding: 8px 11px 11px; }
+.card .ops a, .card .ops button {
+    flex: 1;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 13px;
+    text-decoration: none;
+    color: #111111;
+    border: 2px solid #111111;
+    border-radius: 4px;
+    background: #ffffff;
+    cursor: pointer;
+}
+.card .ops a:hover { background: #111111; color: #ffffff; }
+.card .ops button.danger:hover { background: #b02b2b; border-color: #b02b2b; color: #ffffff; }
+
+.empty {
+    text-align: center;
+    padding: 90px 20px;
+    color: #666666;
+    border: 2px dashed #bbbbbb;
+    border-radius: 8px;
+    background: #ffffff;
+}
+.empty p { margin: 4px; font-size: 16px; }
+.empty .hint { font-size: 13px; color: #999999; }
+
+.hidden { display: none !important; }

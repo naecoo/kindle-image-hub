@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Image Manager · kindle-image-hub</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header>
+        <div class="brand">
+            <h1 data-i18n="app.title">Image Manager</h1>
+            <span class="tag">kindle-image-hub</span>
+        </div>
+        <nav class="links">
+            <div class="lang-toggle" id="lang-toggle">
+                <button type="button" data-lang="en">EN</button>
+                <button type="button" data-lang="zh">中文</button>
+            </div>
+            <span id="host-label"></span>
+            <a href="/convert/" data-i18n="nav.converter">Open converter →</a>
+        </nav>
+    </header>
+
+    <div class="toolbar">
+        <div class="tabs" id="tabs">
+            <button type="button" data-dir="screensaver" class="on" data-i18n="tab.screensaver">Screensaver</button>
+            <button type="button" data-dir="images" data-i18n="tab.images">Images</button>
+        </div>
+        <div class="actions">
+            <button id="upload-btn" type="button" class="primary" data-i18n="toolbar.upload">Upload images…</button>
+            <input id="upload-input" type="file" accept="image/*" multiple hidden />
+            <button id="refresh-btn" type="button" data-i18n="toolbar.refresh">Refresh</button>
+            <span id="status" class="status"></span>
+        </div>
+    </div>
+
+    <main>
+        <div id="grid" class="grid"></div>
+        <div id="empty" class="empty hidden">
+            <p data-i18n="empty.title">No images in this folder</p>
+            <p class="hint"><span data-i18n="empty.hint">Use “Upload images…” from your computer, or send from the converter</span></p>
+        </div>
+    </main>
+
+    <script src="i18n.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kindle Image Converter · kindle-image-hub</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header>
+        <div class="brand">
+            <h1 data-i18n="app.title">Image Converter</h1>
+            <span class="tag">kindle-image-hub</span>
+        </div>
+        <div class="header-right">
+            <div class="lang-toggle" id="lang-toggle">
+                <button type="button" data-lang="en">EN</button>
+                <button type="button" data-lang="zh">中文</button>
+            </div>
+            <div class="link-cluster">
+                <label data-i18n="hub.label">Direct to Kindle</label>
+                <input id="hub-url" type="text" placeholder="http://192.168.1.23:8642" spellcheck="false" />
+                <button id="hub-connect" type="button" data-i18n="hub.connect">Connect</button>
+                <span id="hub-status" class="status off" data-i18n="hub.offline">Offline</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <aside class="panel">
+            <section>
+                <h2 data-i18n="target.device">Target device</h2>
+                <select id="profile"></select>
+                <div id="custom-size" class="row hidden">
+                    <input id="custom-w" type="number" min="1" max="4096" data-i18n-ph="target.w" placeholder="W" />
+                    <span>×</span>
+                    <input id="custom-h" type="number" min="1" max="4096" data-i18n-ph="target.h" placeholder="H" />
+                </div>
+                <div class="row segmented" id="orientation">
+                    <button type="button" data-orient="portrait" class="on" data-i18n="orient.portrait">Portrait</button>
+                    <button type="button" data-orient="landscape" data-i18n="orient.landscape">Landscape</button>
+                </div>
+                <div class="target-preview"><span data-i18n="target.size">Target size</span> <strong id="target-size">—</strong></div>
+            </section>
+
+            <section>
+                <h2 data-i18n="out.title">Output</h2>
+                <label class="radio"><input type="radio" name="fmt" value="gray" checked /> <span data-i18n="out.gray">Grayscale PNG · for screensavers</span></label>
+                <label class="radio"><input type="radio" name="fmt" value="color" /> <span data-i18n="out.color">Color PNG</span></label>
+                <label class="radio"><input type="radio" name="fmt" value="jpeg" /> <span data-i18n="out.jpeg">JPEG</span></label>
+
+                <label class="check" id="dither-wrap">
+                    <input type="checkbox" id="dither" checked />
+                    <span data-i18n="out.dither">e-ink tuned (16-level + dither)</span>
+                </label>
+                <div class="row hidden" id="quality-wrap">
+                    <label for="quality" data-i18n="out.quality">Quality</label>
+                    <input id="quality" type="range" min="60" max="95" step="5" value="90" />
+                    <span id="quality-val">90</span>
+                </div>
+                <label class="radio" id="fit-cover-label">
+                    <input type="radio" name="fit" value="cover" checked /> <span data-i18n="out.cover">Fill &amp; crop (screensaver)</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="fit" value="contain" /> <span data-i18n="out.contain">Fit with padding</span>
+                </label>
+                <label class="check">
+                    <input type="checkbox" id="ss-naming" checked />
+                    <span data-i18n="out.ssNaming">Screensaver naming (bg_ss00.png …)</span>
+                </label>
+            </section>
+
+            <section>
+                <h2 data-i18n="img.title">Images</h2>
+                <button id="pick-btn" type="button" class="primary" data-i18n="img.pick">Choose images…</button>
+                <input id="file-input" type="file" accept="image/*" multiple hidden />
+                <p class="hint" data-i18n="img.dropHint">or drag &amp; drop onto the right side</p>
+            </section>
+
+            <section>
+                <h2 data-i18n="batch.title">Batch</h2>
+                <div class="row">
+                    <button id="dl-all" type="button" disabled data-i18n="batch.dlAll">Download all</button>
+                    <button id="upload-all" type="button" disabled data-i18n="batch.upAll">Send all</button>
+                </div>
+                <p id="batch-status" class="hint"></p>
+            </section>
+        </aside>
+
+        <section id="results-wrap">
+            <div id="dropzone">
+                <p data-i18n="drop.title">Drop images here</p>
+                <p class="hint" data-i18n="drop.sub">Conversion runs locally in your browser — nothing is uploaded to any server</p>
+            </div>
+            <div id="results" class="hidden"></div>
+        </section>
+    </main>
+
+    <script src="profiles.js"></script>
+    <script src="i18n.js"></script>
+    <script src="png-encoder.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
